@@ -96,9 +96,8 @@ var _ = Describe("[CANARY] test service connectivity", func() {
 		time.Sleep(utils.PollIntervalLong)
 
 		testerContainer = manifest.NewBusyBoxContainerBuilder().
-			Command([]string{"wget"}).
-			Args([]string{"--spider", "-T", "1", fmt.Sprintf("[%s]:%d", service.Spec.ClusterIP,
-				service.Spec.Ports[0].Port)}).
+			Command([]string{"nslookup"}).
+			Args([]string{"kubernetes.default"}).
 			Build()
 
 		testerJob = manifest.NewDefaultJobBuilder().
