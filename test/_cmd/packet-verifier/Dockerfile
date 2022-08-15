@@ -2,7 +2,7 @@ ARG builder_image=amazonlinux:2
  
 FROM $builder_image as builder
 ENV GO111MODULE=on
-ENV GOPROXY=direct
+ENV GOPROXY=https://proxy.golang.org
 ENV GOOS=linux
 ENV GOARCH=amd64
 COPY . /
