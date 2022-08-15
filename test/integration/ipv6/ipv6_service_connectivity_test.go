@@ -95,20 +95,44 @@ var _ = Describe("[CANARY] test service connectivity", func() {
 		By("sleeping for some time to allow service to become ready")
 		time.Sleep(utils.PollIntervalLong)
 
+		By("xryan sts wget sts.amazonaws.com")
 		testerContainer = manifest.NewBusyBoxContainerBuilder().
 			Command([]string{"wget"}).
 			Args([]string{"--spider", "-T", "1", "https://sts.amazonaws.com"}).
 			Build()
-
 		testerJob = manifest.NewDefaultJobBuilder().
 			Parallelism(20).
 			Container(testerContainer).
 			Build()
-
-		By("creating jobs to verify service connectivity")
 		_, err = f.K8sResourceManagers.JobManager().
 			CreateAndWaitTillJobCompleted(testerJob)
 		Expect(err).ToNot(HaveOccurred())
+		
+		By("xryan sts wget sts.aoeuamazonaws.com")
+		testerContainer2 = manifest.NewBusyBoxContainerBuilder().
+			Command([]string{"wget"}).
+			Args([]string{"--spider", "-T", "1", "https://sts.aoeuamazonaws.com"}).
+			Build()
+		testerJob2 = manifest.NewDefaultJobBuilder().
+			Parallelism(2).
+			Container(testerContainer2).
+			Build()
+		_, err2 = f.K8sResourceManagers.JobManager().
+			CreateAndWaitTillJobCompleted(testerJob2)
+		Expect(err2).ToNot(HaveOccurred())
+		
+		By("xryan cat /etc/resolv.conf")
+		testerContainer3 = manifest.NewBusyBoxContainerBuilder().
+			Command([]string{"cat"}).
+			Args([]string{"/etc/resolv.conf"}).
+			Build()
+		testerJob3 = manifest.NewDefaultJobBuilder().
+			Parallelism(2).
+			Container(testerContainer3).
+			Build()
+		_, err3 = f.K8sResourceManagers.JobManager().
+			CreateAndWaitTillJobCompleted(testerJob3)
+		Expect(err3).ToNot(HaveOccurred())
 
 		// Test connection to an unreachable port should fail
 		negativeTesterContainer = manifest.NewBusyBoxContainerBuilder().
