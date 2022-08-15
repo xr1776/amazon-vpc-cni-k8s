@@ -13,7 +13,7 @@
 
 MAKEFILE_PATH = $(dir $(realpath -s $(firstword $(MAKEFILE_LIST))))
 
-export GOPROXY = direct
+export GOPROXY = https://proxy.golang.org
 
 build-test-binaries:
 	mkdir -p ${MAKEFILE_PATH}build
