@@ -5,7 +5,7 @@ WORKDIR /go/src/github.com/aws/amazon-vpc-cni-k8s
 ARG TARGETARCH
 # Configure build with Go modules
 ENV GO111MODULE=on
-ENV GOPROXY=direct
+ENV GOPROXY=https://proxy.golang.org
 
 COPY Makefile ./
 RUN make plugins && make debug-script
