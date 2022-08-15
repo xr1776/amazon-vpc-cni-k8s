@@ -4,7 +4,7 @@ FROM $golang_image as builder
 WORKDIR /go/src/github.com/aws/amazon-vpc-cni-k8s
 # Configure build with Go modules
 ENV GO111MODULE=on
-ENV GOPROXY=direct
+ENV GOPROXY=https://proxy.golang.org
 
 # Copy modules in before the rest of the source to only expire cache on module
 # changes:
