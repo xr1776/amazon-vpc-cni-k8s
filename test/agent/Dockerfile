@@ -1,7 +1,7 @@
 FROM public.ecr.aws/docker/library/golang:1.17-stretch as builder
 
 WORKDIR /workspace
-ENV GOPROXY direct
+ENV GOPROXY https://proxy.golang.org
 
 COPY go.mod go.mod
 COPY go.sum go.sum
