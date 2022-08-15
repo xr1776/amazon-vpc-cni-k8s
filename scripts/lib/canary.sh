@@ -24,6 +24,6 @@ fi
 
 # Request timesout in China Regions with default proxy
 if [[ $REGION == "cn-north-1" || $REGION == "cn-northwest-1" ]]; then
-  go env -w GOPROXY=https://goproxy.cn,direct
+  go env -w GOPROXY=https://proxy.golang.org
   go env -w GOSUMDB=sum.golang.google.cn
 fi
