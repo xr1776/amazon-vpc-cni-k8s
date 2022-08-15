@@ -4,7 +4,7 @@ WORKDIR /go/src/github.com/aws/amazon-vpc-cni-k8s
 
 # Force the go compiler to use modules.
 ENV GO111MODULE=on
-ENV GOPROXY=direct
+ENV GOPROXY=https://proxy.golang.org
 
 # Add goimports
 RUN go install golang.org/x/tools/cmd/goimports@latest
