@@ -63,7 +63,7 @@ export GOOS = linux
 export CGO_ENABLED = 0
 # NOTE: Provided for local toolchains that require explicit module feature flag.
 export GO111MODULE = on
-export GOPROXY = direct
+export GOPROXY = https://proxy.golang.org
 
 VENDOR_OVERRIDE_FLAG =
 # aws-sdk-go override in case we need to build against a custom version
