@@ -97,8 +97,8 @@ var _ = Describe("[CANARY] test service connectivity", func() {
 
 		By("xryan sts wget sts.amazonaws.com")
 		testerContainer = manifest.NewBusyBoxContainerBuilder().
-			Command([]string{"wget"}).
-			Args([]string{"--spider", "-T", "1", "https://sts.aoeuamazonaws.com"}).
+			Command([]string{"sleep"}).
+			Args([]string{"1800"}).
 			Build()
 		testerJob = manifest.NewDefaultJobBuilder().
 			Parallelism(20).
